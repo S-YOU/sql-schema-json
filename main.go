@@ -18,7 +18,6 @@ import (
 	"github.com/iancoleman/strcase"
 	"github.com/jinzhu/copier"
 	"github.com/jinzhu/inflection"
-	"github.com/k0kubun/pp"
 	"github.com/kenshaw/snaker"
 )
 
@@ -215,7 +214,6 @@ func parseDDL(in []byte) ([]*Table, error) {
 	for _, l := range ddl {
 		switch v := l.(type) {
 		case *sqlparser.CreateTable:
-			pp.Println(v)
 			tbl := &Table{Indexes: []*CreateIndex{}}
 			if err := copier.Copy(tbl, v); err != nil {
 				return nil, err
